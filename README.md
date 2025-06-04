@@ -47,3 +47,4 @@ For the early version I decided to keep it short and simple, I used a RandomFore
 
 - **2025-05-31**: Added the README for this project, still collecting data, moved some journal notes to this README
 - **2025-06-03**: Added the model, model training notebook, logger, preprocessed data, unprocessed data, and the data preprocessor
+- **2025-06-04**: Forgot to commit the folders and files above, actually commited them this time(My bad lol)
