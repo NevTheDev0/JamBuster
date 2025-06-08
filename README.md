@@ -30,7 +30,7 @@ This project is my personal attempt at building a model that predicts traffic ba
 
 ## Installation/Running Models or Scripts locally
 
-*Note: This is for the whole pipeline*
+## V1(This Version does not make live predictions)
 ### 1. Clone the Repo
 ```
 git clone https://github.com/NevTheDev0/JamBuster
