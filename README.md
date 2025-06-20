@@ -29,6 +29,7 @@ This project is my personal attempt at building a model that predicts traffic ba
 - 2025-06-15: Tried XGBoost for model training, will work more on training this specific model
 - 2025-06-16: XGBoost doesn't seem to be doing as well as RandomForests, will try to achieve similar results
 - 2025-06-17: Fine Tuned XGBoost to find best outcome possible
+- 2025-06-20: Uploaded almost everything into this Github repo
 - Streamlit dashboard demo (planned)
 
 ## Tools and Technologies
