@@ -15,7 +15,20 @@ This project is my personal attempt at building a model that predicts traffic ba
 - 2025-05-28: Started collecting and will continue collecting data on 3 main roads (picked Tun Abdul Razak, Boulevard, and Sultan Alauddin due to known traffic problems) — ongoing
 - 2025-06-2: Started making a basic congestion predictor using Random Forests
 - 2025-06-3: Finished training the basic model, first version of model will soon be ready for launch
-- Model training & evaluation (coming soon)  
+- 2025-06-4: Trained first version of model on RandomForests
+- 2025-06-5: Model wasn't general, generalized model as best as possible
+- 2025-06-6: Model trained and evaluated on RME, CV, F1 Score
+- 2025-06-7: Simulated Prediction(locally not live), was not what was hoped
+- 2025-06-8: Split preprocessing stage into 2, preparing the data then building the pipeline
+- 2025-06-9: Implemented OpenMeteo for weather during data preprocessing 
+- 2025-06-10: Model Trained on prepped data, re-evaluated RME, CV, F1 Score
+- 2025-06-11: First version of real time simulation created
+- 2025-06-12: Fixed critical issue in transformers.py specifically in FeatureDropperTransformers
+- 2025-06-13: Fine tuned model as best as possible
+- 2025-06-14: Real Time Simulation script polished, now working as intended
+- 2025-06-15: Tried XGBoost for model training, will work more on training this specific model
+- 2025-06-16: XGBoost doesn't seem to be doing as well as RandomForests, will try to achieve similar results
+- 2025-06-17: Fine Tuned XGBoost to find best outcome possible
 - Streamlit dashboard demo (planned)
 
 ## Tools and Technologies
@@ -90,3 +103,5 @@ For the early version I decided to keep it short and simple, I used a RandomFore
 - **2025-06-03**: Added, model training notebook, preprocessed data, unprocessed data, and the data preprocessor
 - **2025-06-04**: Forgot to commit the folders and files above, actually commited them this time(My bad lol)
 - **2025-06-05**: Updated this README to include how to run the model locally, also added traffic_logger.py, will upload more necessary files soon
+- **2025-06-17**: Fine tuned models and evaluated their RME, CV, and F1 Score, will upload soon
+- **2025-06-20**: Fine tuned models further before uploading, succesfully uploaded scripts folder and models folder, will update notebooks and will include research report
