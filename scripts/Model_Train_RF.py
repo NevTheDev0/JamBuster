@@ -34,41 +34,8 @@ scores = cross_val_score(classifier, X, y, cv=5, scoring='f1')
 print("🔥 CV F1 Score:", scores.mean())
 
 
-#joblib.dump(classifier, "models/RFclassifier.pkl")
+joblib.dump(classifier, "models/RFclassifier.pkl")
 
 
 
-'''
-import pandas as pd
-import matplotlib.pyplot as plt
-import joblib
 
-# Load preprocessor and classifier
-preprocessor = joblib.load("models/preprocessor_pipeline.pkl")
-classifier = joblib.load("models/RFclassifier.pkl")
-
-# Get feature names from preprocessor
-def get_feature_names(preprocessor):
-    return preprocessor.named_steps["column_transformer"].get_feature_names_out()
-
-feature_names = get_feature_names(preprocessor)
-
-# Get feature importances
-importances = classifier.feature_importances_
-
-# Create a DataFrame
-feature_importance_df = pd.DataFrame({
-    'Feature': feature_names,
-    'Importance': importances
-}).sort_values(by='Importance', ascending=False)
-
-# Plotting
-plt.figure(figsize=(12, 8))
-plt.barh(feature_importance_df['Feature'], feature_importance_df['Importance'])
-plt.gca().invert_yaxis()  # Most important at the top
-plt.title('Feature Importances - Random Forest')
-plt.xlabel('Importance Score')
-plt.tight_layout()
-plt.savefig("models/feature_importance.png")
-plt.show()
-'''
