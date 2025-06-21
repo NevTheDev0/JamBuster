@@ -5,7 +5,7 @@ import requests
 from datetime import datetime
 from sklearn.pipeline import Pipeline
 
-model = joblib.load("models/XGBClassifier.pkl")
+model = joblib.load("models/RFclassifier.pkl")
 preprocessor = joblib.load("models/preprocessor_pipeline.pkl")
 
 def load_latest_data(csv_path="traffic_log.csv"):
