@@ -2,10 +2,9 @@ import pandas as pd
 import joblib
 import time
 import requests
-from datetime import datetime
-from sklearn.pipeline import Pipeline
 
-model = joblib.load("models/RFclassifier.pkl")
+
+model = joblib.load("models/XGGBClassifier.pkl")
 preprocessor = joblib.load("models/preprocessor_pipeline.pkl")
 
 def load_latest_data(csv_path="traffic_log.csv"):
