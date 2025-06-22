@@ -30,6 +30,7 @@ This project is my personal attempt at building a model that predicts traffic ba
 - 2025-06-16: XGBoost doesn't seem to be doing as well as RandomForests, will try to achieve similar results
 - 2025-06-17: Fine Tuned XGBoost to find best outcome possible
 - 2025-06-20: Uploaded almost everything into this Github repo
+- 2025-06-21: WAS going to use SKlearn but found out XGBoost performed much better
 - Streamlit dashboard demo (planned)
 
 ## Tools and Technologies
@@ -106,3 +107,4 @@ For the early version I decided to keep it short and simple, I used a RandomFore
 - **2025-06-05**: Updated this README to include how to run the model locally, also added traffic_logger.py, will upload more necessary files soon
 - **2025-06-17**: Fine tuned models and evaluated their RME, CV, and F1 Score, will upload soon
 - **2025-06-20**: Fine tuned models further before uploading, succesfully uploaded scripts folder and models folder, will update notebooks and will include research report
+- **2025-06-21**: Changed sim_RT_predictions.py to use XGBoost instead of RandomForests
