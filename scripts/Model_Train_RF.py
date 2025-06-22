@@ -7,20 +7,14 @@ from sklearn.metrics import confusion_matrix
 import joblib
 
 
+#Load variables, split dataset
 X, y = joblib.load("models/train_ready_data.pkl")
-
-print(len(X), len(y))
-
-
-#Train-Test split
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, shuffle=False)
 
-
+#Balance the dataset
 sm = SMOTE(random_state=42)
 X_train_resampled, y_train_resampled = sm.fit_resample(X_train, y_train)
 
-print("Before:", y_train.value_counts(normalize=True))
-print("After :", y_train_resampled.value_counts(normalize=True))
 
 #Classifier training
 classifier = RandomForestClassifier(n_estimators=100, random_state=42,class_weight="balanced")
@@ -33,7 +27,7 @@ print(confusion_matrix(y_test, y_pred))
 scores = cross_val_score(classifier, X, y, cv=5, scoring='f1')
 print("🔥 CV F1 Score:", scores.mean())
 
-
+#Turn the model into a pickle
 joblib.dump(classifier, "models/RFclassifier.pkl")
 
 

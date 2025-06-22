@@ -7,31 +7,31 @@ from transformers import FeatureDropperTransformer
 import joblib
 import os
 
-# === CONFIG CONSTANTS ===
+#Define Constants
 CSV_PATH = "traffic_processed.csv"
 PREPROCESSOR_PATH = "models/preprocessor_pipeline.pkl"
 TRAIN_DATA_PATH = "models/train_ready_data.pkl"
 DROP_COLS = ["timestamp", "road", "confidence", "congestion_level"]  # added congestion_level
 
-# === Load and Validate Data ===
+#Load the data, validate it too
 if not os.path.exists(CSV_PATH):
     raise FileNotFoundError(f"CSV file not found: {CSV_PATH}")
 
 df = pd.read_csv(CSV_PATH)
 
-# === Feature Engineering ===
+#Engineer more features 
 df['speed_ratio'] = df['current_speed'] / df['free_flow_speed']
 df['future_speed'] = df['current_speed'].shift(-3)
 df['will_congest_change'] = (df['future_speed'] < 0.85 * df['free_flow_speed']).astype(int)  # more dynamic!
 df.dropna(subset=['future_speed'], inplace=True)
 
 
-# === Feature Columns ===
+#Columns full of features 
 categorical = ['weather'] 
 numerical = ['current_speed', 'hour']
 boolean = ['rush_hour', 'is_weekend', 'low_confidence']
 
-# === Transformers ===
+#Data transformers for later use
 cat_transformer = Pipeline(steps=[
     ("imputer", SimpleImputer(strategy="constant", fill_value="unknown")),
     ("onehot", OneHotEncoder(handle_unknown='ignore', sparse_output=False))
@@ -45,17 +45,17 @@ preprocessor = Pipeline(steps=[
     ]))
 ])
 
-# === Transform Data ===
+#Transform data
 X = df.drop(columns=["congestion_level"])  # Safe, also dropped in transformer
 X_transformed = preprocessor.fit_transform(X)
 y = df['will_congest_change']
 
-# === Save ===
+#Save the transformed data
 os.makedirs("models", exist_ok=True)
 joblib.dump(preprocessor, PREPROCESSOR_PATH)
 joblib.dump((X_transformed, y), TRAIN_DATA_PATH)
 
-# === Debug Output ===
+#Output, complete with debugging prints(just in case yk)
 print("✅ Pipeline built and data saved!")
 print(f"🔢 Final shape of features: {X_transformed.shape}")
 print(f"🧠 Target variable distribution:\n{y.value_counts()}")

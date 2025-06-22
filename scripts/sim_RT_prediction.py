@@ -65,4 +65,4 @@ if __name__ == "__main__":
     while True:
         result = predict_live()
         print(result)
-        time.sleep(310)  # refresh every 10 seconds or whatever fits
+        time.sleep(310)  #refreshes every 5 minute and 10 seconds(to avoid clashing between running the logger and making a prediction)

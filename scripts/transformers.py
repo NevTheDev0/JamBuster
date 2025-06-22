@@ -2,10 +2,10 @@ from sklearn.base import BaseEstimator, TransformerMixin
 
 class FeatureDropperTransformer(BaseEstimator, TransformerMixin):
     def __init__(self, drop_cols=None, verbose=False):
-        self.drop_cols = drop_cols if drop_cols is not None else []
-        self.verbose = verbose
+        self.drop_cols = drop_cols if drop_cols is not None else [] #Allows dropping features that MIGHT not be defined 
+        self.verbose = verbose #Added to avoid unnecessary errors
 
-    def fit(self, X, y=None):
+    def fit(self, X, y=None): 
         return self
 
     def transform(self, X):
