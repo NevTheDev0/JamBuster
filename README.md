@@ -51,15 +51,11 @@ This project is my personal attempt at building a model that predicts traffic ba
 git clone https://github.com/NevTheDev0/JamBuster
 cd JamBuster
 ```
-## ⚠️ Note on Dataset
-
+⚠️ Note on Dataset
 Due to licensing restrictions, the raw traffic dataset (`traffic_log.csv`) has been removed from this repository.
-
 However, you can regenerate it by:
-
 1. Getting your own [TomTom API Key](https://developer.tomtom.com/).
 2. Running `scripts/traffic_logger.py`, which collects and appends real-time traffic data into `traffic_log.csv`.
-
 See `scripts/traffic_logger.py` for implementation.
 
 ### 2. Install requirements
@@ -119,3 +115,4 @@ For the early version I decided to keep it short and simple, I used a RandomFore
 - **2025-06-17**: Fine tuned models and evaluated their RME, CV, and F1 Score, will upload soon
 - **2025-06-20**: Fine tuned models further before uploading, succesfully uploaded scripts folder and models folder, will update notebooks and will include research report
 - **2025-06-21**: Changed sim_RT_predictions.py to use XGBoost instead of RandomForests
+- **2025-06-22**: Removed a folder containing crucial information
