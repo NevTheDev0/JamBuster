@@ -51,7 +51,18 @@ This project is my personal attempt at building a model that predicts traffic ba
 git clone https://github.com/NevTheDev0/JamBuster
 cd JamBuster
 ```
-### 2. Install requirement
+## ⚠️ Note on Dataset
+
+Due to licensing restrictions, the raw traffic dataset (`traffic_log.csv`) has been removed from this repository.
+
+However, you can regenerate it by:
+
+1. Getting your own [TomTom API Key](https://developer.tomtom.com/).
+2. Running `scripts/traffic_logger.py`, which collects and appends real-time traffic data into `traffic_log.csv`.
+
+See `scripts/traffic_logger.py` for implementation.
+
+### 2. Install requirements
 ```
 pip install -r requirements.txt
 ```
