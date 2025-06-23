@@ -4,8 +4,11 @@ import time
 import requests
 
 
-model = joblib.load("models/XGBClassifier.pkl")
-preprocessor = joblib.load("models/preprocessor_pipeline.pkl")
+def load_model():
+    model = joblib.load("models/XGBClassifier.pkl")
+    preprocessor = joblib.load("models/preprocessor_pipeline.pkl")
+    return model, preprocessor
+
 
 def load_latest_data(csv_path="traffic_log.csv"):
     df = pd.read_csv(csv_path)
@@ -53,7 +56,7 @@ def add_features(df):
     df['weather'] = get_current_weather()
     return df
 
-def predict_live():
+def predict_live(model,preprocessor):
     raw_data = load_latest_data()
     featured = add_features(raw_data)
     X = preprocessor.transform(featured)
@@ -61,8 +64,15 @@ def predict_live():
     raw_data['predicted_congestions'] = predictions
     return raw_data[['road', 'timestamp', 'predicted_congestions']]
 
-if __name__ == "__main__":
+
+def make_predict():
+    print("✅ run_predict() has started")
+    model, preprocessor = load_model()
     while True:
-        result = predict_live()
+        result = predict_live(model, preprocessor)
         print(result)
-        time.sleep(310)  #refreshes every 5 minute and 10 seconds(to avoid clashing between running the logger and making a prediction)
+        time.sleep(310)
+
+
+if __name__ == "__main__":
+    make_predict()
