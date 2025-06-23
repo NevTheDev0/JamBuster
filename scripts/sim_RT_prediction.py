@@ -4,7 +4,7 @@ import time
 import requests
 
 
-model = joblib.load("models/XGGBClassifier.pkl")
+model = joblib.load("models/XGBClassifier.pkl")
 preprocessor = joblib.load("models/preprocessor_pipeline.pkl")
 
 def load_latest_data(csv_path="traffic_log.csv"):
