@@ -179,5 +179,5 @@ After a quick thought, deciding to compare each model on their metrics, I booted
 - **2025-06-05**: Updated this README to include how to run the model locally, also added traffic_logger.py, will upload more necessary files soon
 - **2025-06-17**: Fine tuned models and evaluated their RME, CV, and F1 Score, will upload soon
 - **2025-06-20**: Fine tuned models further before uploading, successfully uploaded scripts folder and models folder, will update notebooks and will include research report
-- **2025-06-21**: Changed sim_RT_predictions.py to use XGBoost instead of RandomForests
+- **2025-06-21**: Changed sim_RT_predictions.py to use XGBoost instead of Random Forest
 - **2025-06-22**: Removed a folder containing sensitive information
