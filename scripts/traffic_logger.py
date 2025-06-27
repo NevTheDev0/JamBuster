@@ -9,8 +9,7 @@ from datetime import datetime
 
 # API Set Up
 load_dotenv()
-api_key = os.getenv("TRAFFIC_API_KEY"), st.secrets.get("TRAFFIC_API_KEY") # Ignore this, this is for the Streamlit to use
-
+api_key = st.secrets.get("TRAFFIC_API_KEY", os.getenv("TRAFFIC_API_KEY"))
 
 
 roads = [
