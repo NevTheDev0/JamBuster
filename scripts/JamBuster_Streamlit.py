@@ -5,6 +5,8 @@ import pandas as pd
 import requests
 from traffic_logger import *
 from pathlib import Path
+from transformers import FeatureDropperTransformer
+
 
 LAT = -5.135399
 LON = 119.423790
