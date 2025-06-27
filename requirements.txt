@@ -1,0 +1,11 @@
+streamlit
+requests
+python-dotenv
+pandas
+scikit-learn
+transformers
+joblib
+click
+imblearn
+xgboost
+tqdm
