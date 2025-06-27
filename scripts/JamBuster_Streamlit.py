@@ -1,4 +1,7 @@
 import streamlit as st
+import sys
+from pathlib import Path
+sys.path.append(str(Path(__file__).resolve().parent))  # ✅ so Python can find scripts
 import joblib
 from datetime import datetime, time as dt_time
 import pandas as pd
