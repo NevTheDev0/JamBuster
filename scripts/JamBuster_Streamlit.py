@@ -90,7 +90,7 @@ def get_weather_at_time(timestamp):
 def interpret_prediction(pred):
     if pred == 1:
         return "🚨 About to jam, I'd be careful"
-    else:
+    elif pred == 0:
         return "🍏 This road won't jam until a few minutes, dw"
 
 
