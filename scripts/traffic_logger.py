@@ -19,25 +19,43 @@ roads = [
 ]
 
 
-def get_traffic_data(road):
+def get_traffic_data(road, api_key=None):
+    if api_key is None:
+        # fallback if not passed in
+        from dotenv import load_dotenv
+        import os
+
+        load_dotenv()
+        api_key = os.getenv("TRAFFIC_API_KEY")
+
     url = f"https://api.tomtom.com/traffic/services/4/flowSegmentData/relative0/22/json?point={road['lat']},{road['lon']}&key={api_key}"
-    response = requests.get(url)
-    data = response.json()
 
-    if "flowSegmentData" not in data:
-        print(f"Error for {road['name']} missing or not found")
+    try:
+        response = requests.get(url)
+        if response.status_code != 200:
+            print(f"[ERROR] API failed for {road['name']}: {response.status_code}")
+            return None
 
-    segment = data["flowSegmentData"]
+        data = response.json()
+        if "flowSegmentData" not in data:
+            print(f"[ERROR] No flowSegmentData for {road['name']}")
+            return None
 
-    return {
-        "road": road["name"],
-        "lat": road["lat"],
-        "lon": road["lon"],
-        "current_speed": segment["currentSpeed"],
-        "free_flow_speed": segment["freeFlowSpeed"],
-        "confidence": segment["confidence"],
-        "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-    }
+        segment = data["flowSegmentData"]
+
+        return {
+            "road": road["name"],
+            "lat": road["lat"],
+            "lon": road["lon"],
+            "current_speed": segment["currentSpeed"],
+            "free_flow_speed": segment["freeFlowSpeed"],
+            "confidence": segment["confidence"],
+            "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        }
+
+    except Exception as e:
+        print(f"[EXCEPTION] Failed to get data for {road['name']}: {e}")
+        return None
 
 
 def collect_all_data():
