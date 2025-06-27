@@ -142,10 +142,15 @@ if selected_date > datetime.today().date():
 
 
 if st.button("Predict Traffic"):
-    prediction = predict_traffic(selected_road, selected_date, selected_time)
-    st.success(f"Prediction: {prediction}")
+    st.session_state.prediction = predict_traffic(
+        selected_road, selected_date, selected_time
+    )
+if "prediction" in st.session_state:
+    st.success(f"Prediction: {st.session_state.prediction}")
     with st.expander("ℹ️ What do the predictions mean?"):
-        st.markdown("""
+        st.markdown(
+            """
         - 🍏 **Smooth**: Traffic is light, road's clear.
         - 🚨 **Jammed**: Traffic is building up, expect delays.
-        """)
+        """
+        )
