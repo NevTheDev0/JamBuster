@@ -1,6 +1,7 @@
 import requests
 import time
 import os
+import streamlit as st
 from dotenv import load_dotenv
 import pandas as pd
 from datetime import datetime
@@ -8,7 +9,9 @@ from datetime import datetime
 
 # API Set Up
 load_dotenv()
-api_key = os.getenv("TRAFFIC_API_KEY")
+api_key = os.getenv("TRAFFIC_API_KEY"), st.secrets.get("TRAFFIC_API_KEY") # Ignore this, this is for the Streamlit to use
+
+
 
 roads = [
     {"name": "Boulevard", "lat": -5.156843, "lon": 119.446864},
