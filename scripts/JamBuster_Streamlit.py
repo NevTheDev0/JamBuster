@@ -90,32 +90,19 @@ def get_weather_at_time(timestamp):
 def interpret_prediction(pred):
     if pred == 1:
         return "🚨 About to jam, I'd be careful"
-    elif pred == 0:
+    else:
         return "🍏 This road won't jam until a few minutes, dw"
 
 
 def predict_traffic(road, selected_date, selected_time):
-    BASE_DIR = Path(__file__).resolve().parent.parent
+    BASE_DIR = Path(__file__).resolve().parent.parent 
     model_path = BASE_DIR / "models" / "XGBClassifier.pkl"
     pipeline_path = BASE_DIR / "models" / "preprocessor_pipeline.pkl"
     Model = joblib.load(model_path)
     pipeline = joblib.load(pipeline_path)
 
-    # Load API key securely
-    api_key = st.secrets.get("TRAFFIC_API_KEY", None)
-    if api_key is None:
-        st.error("Missing API key. Please set TRAFFIC_API_KEY in Streamlit secrets.")
-        return "❌ Missing API Key"
-
     road_dict = next(r for r in roads if r["name"] == road)
-    road_data = get_traffic_data(road_dict, api_key)
-
-    if road_data is None:
-        st.warning(f"⚠️ Couldn't get live traffic data for {road}")
-        return "❌ Data unavailable"
-
-    # Debug print to check values
-    st.write("📊 Traffic Data Input:", road_data)
+    road_data = get_traffic_data(road_dict)
 
     current_speed = road_data["current_speed"]
     free_flow_speed = road_data["free_flow_speed"]
@@ -137,9 +124,7 @@ def predict_traffic(road, selected_date, selected_time):
                 "free_flow_speed": free_flow_speed,
                 "confidence": confidence,
                 "low_confidence": confidence < 0.3,
-                "speed_ratio": (
-                    current_speed / free_flow_speed if free_flow_speed else 0
-                ),
+                "speed_ratio": current_speed / free_flow_speed,
                 "weather": weather,
             }
         ]
