@@ -1,10 +1,10 @@
 import streamlit as st
 import joblib
-from datetime import datetime, time  # ✅ We're using `time` from datetime
+from datetime import datetime, time as dt_time
 import pandas as pd
 import requests
 from traffic_logger import *
-from prep_data import *
+from pathlib import Path
 
 LAT = -5.135399
 LON = 119.423790
@@ -17,8 +17,8 @@ roads = [
 
 
 def is_rush_hour(ts):
-    return (time(6, 0) <= ts.time() <= time(8, 0)) or (
-        time(16, 0) <= ts.time() <= time(18, 0)
+    return (dt_time(6, 0) <= ts.time() <= dt_time(8, 0)) or (
+        dt_time(16, 0) <= ts.time() <= dt_time(18, 0)
     )
 
 
@@ -90,8 +90,11 @@ def interpret_prediction(pred):
 
 
 def predict_traffic(road, selected_date, selected_time):
-    Model = joblib.load("models/XGBClassifier.pkl")
-    pipeline = joblib.load("models/preprocessor_pipeline.pkl")
+    BASE_DIR = Path(__file__).resolve().parent.parent  # go up from /scripts to root
+    model_path = BASE_DIR / "models" / "XGBClassifier.pkl"
+    pipeline_path = BASE_DIR / "models" / "preprocessor_pipeline.pkl"
+    Model = joblib.load(model_path)
+    pipeline = joblib.load(pipeline_path)
 
     road_dict = next(r for r in roads if r["name"] == road)
     road_data = get_traffic_data(road_dict)
