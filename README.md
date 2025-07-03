@@ -31,7 +31,7 @@ This project is my personal attempt at building a model that predicts traffic ba
 - 2025-06-17: Fine-tuned XGBoost to find the best outcome 
 - 2025-06-20: Uploaded almost every component into this GitHub repo
 - 2025-06-21: Reworked the simulation script to use XGBoost instead of RandomForest, decision based on performance
-- Streamlit dashboard demo (planned)
+- Streamlit dashboard demo (alpha version done, needs fine tuning and polish)
 
 ## Tools and Technologies
 
