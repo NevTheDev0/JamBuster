@@ -31,7 +31,8 @@ This project is my personal attempt at building a model that predicts traffic ba
 - 2025-06-17: Fine-tuned XGBoost to find the best outcome 
 - 2025-06-20: Uploaded almost every component into this GitHub repo
 - 2025-06-21: Reworked the simulation script to use XGBoost instead of RandomForest, decision based on performance
-- Streamlit dashboard demo (alpha version done, needs fine tuning and polish)
+- 2025-06-25: Streamlit dashboard demo (alpha version done, needs fine tuning and polish)
+- 2025-07-20: Realized dataset was horribly imbalanced and skewed, refining traffic log code to only log dirty data to help balance this out
 
 ## Tools and Technologies
 
@@ -181,3 +182,4 @@ After a quick thought, deciding to compare each model on their metrics, I booted
 - **2025-06-20**: Fine tuned models further before uploading, successfully uploaded scripts folder and models folder, will update notebooks and will include research report
 - **2025-06-21**: Changed sim_RT_predictions.py to use XGBoost instead of Random Forest
 - **2025-06-22**: Removed a folder containing sensitive information
+- **2025-07-20**: Visualized dataset, suprisingly skewed towards class 0s, class 1s are very rare and never meet the threshold, updating the code and will retrain model on dirty dataset with high congestion
